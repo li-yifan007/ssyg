@@ -29,7 +29,25 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "subpkg/goods_detail/goods_detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "subpkg/goods_list/goods_list",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "旭昆优购",
@@ -63,7 +81,13 @@
 				"iconPath": "static/images/icons/shouye.png",
 				"selectedIconPath": "static/images/icons/shouye-active.png"
 			}
-		]
+		],
+		 "subPackages": [
+		    {
+		      "root": "subpkg",
+		      "pages": []
+		    }
+		  ]
 	},
 	"uniIdRouter": {}
 }

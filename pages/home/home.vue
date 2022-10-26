@@ -17,8 +17,8 @@
 			<view class="nav-item" v-for="(item,i) in navList" :key="i" @click="navClickHandler(item)">
 				<image class="nav-img" :src="item.image_src"></image>
 			</view>
-		</view>
-
+		</view> 
+ 
 		<!-- 楼层部分 -->
 		<view class="floor-list">
 			<view class="floor-item" v-for="(item,i) in floorList" :key="i">

@@ -9,11 +9,11 @@
 				<view class="goods-name">{{ item.goods_name }}</view>
 				<uni-icons type="arrowright" size="16"></uni-icons>
 			</view>
-		</view>
+		</view> 
 
 		<!-- 搜索历史 -->
 		<view class="history-box">
-			<!-- 标题区域 -->
+			<!-- 标题区域 -->  
 			<view class="history-title">
 				<text>搜索历史</text>
 				<uni-icons type="trash" size="17" @click="cleanHistory"></uni-icons>

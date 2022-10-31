@@ -26,13 +26,20 @@
 		<rich-text :nodes="goods_info.goods_introduce"></rich-text>
 
 		<view class="goods_nav">
-			<uni-goods-nav :fill="true" :options="options" :buttonGroup="buttonGroup" @click="onClick" @buttonClick="buttonClick" />
+			<uni-goods-nav :fill="true" :options="options" :buttonGroup="buttonGroup" @click="onClick"
+				@buttonClick="buttonClick" />
 		</view>
 
 	</view>
 </template>
 
 <script>
+	import {
+		mapState,
+		mapMutations,
+		mapGetters
+	} from 'vuex'
+
 	export default {
 		data() {
 			return {
@@ -43,7 +50,7 @@
 				}, {
 					icon: 'cart',
 					text: '购物车',
-					info: 2
+					info: 0
 				}],
 				// 右侧按钮组的配置对象
 				buttonGroup: [{
@@ -59,6 +66,21 @@
 				]
 			};
 		},
+		watch: {
+			total: {
+				handler(newVal) {
+					const findResult = this.options.find((x) => x.text === '购物车')
+					if (findResult) {
+						findResult.info = newVal
+					}
+				},
+				immediate: true
+			}
+		},
+		computed: {
+			...mapState('m_cart', []),
+			...mapGetters('m_cart', ['total']),
+		},
 		onLoad(options) {
 			// 获取商品 Id
 			const goods_id = options.goods_id
@@ -66,6 +88,7 @@
 			this.getGoodsDetail(goods_id)
 		},
 		methods: {
+			...mapMutations('m_cart', ['addToCart']),
 			// 定义请求商品详情数据的方法
 			async getGoodsDetail(goods_id) {
 				const {
@@ -88,12 +111,26 @@
 					urls: this.goods_info.pics.map(x => x.pics_big)
 				})
 			},
-			onClick(e){
+			onClick(e) {
 				console.log(e);
-				if(e.content.text === '购物车'){
+				if (e.content.text === '购物车') {
 					uni.switchTab({
-						url:'/pages/cart/cart'
+						url: '/pages/cart/cart'
 					})
+				}
+			},
+			buttonClick(e) {
+				if (e.content.text === '加入购物车') {
+					const goods = {
+						goods_id: this.goods_info.goods_id, // 商品的Id
+						goods_name: this.goods_info.goods_name, // 商品的名称
+						goods_price: this.goods_info.goods_price, // 商品的价格
+						goods_count: 1, // 商品的数量
+						goods_small_logo: this.goods_info.goods_small_logo, // 商品的图片
+						goods_state: true // 商品的勾选状态
+					}
+
+					this.addToCart(goods)
 				}
 			}
 		}
@@ -149,18 +186,18 @@
 			color: gray;
 		}
 	}
-	
+
 	.goods-detail-container {
-	  // 给页面外层的容器，添加 50px 的内padding，
-	  // 防止页面内容被底部的商品导航组件遮盖
-	  padding-bottom: 50px;
+		// 给页面外层的容器，添加 50px 的内padding，
+		// 防止页面内容被底部的商品导航组件遮盖
+		padding-bottom: 50px;
 	}
-	
+
 	.goods_nav {
-	  // 为商品导航组件添加固定定位
-	  position: fixed;
-	  bottom: 0;
-	  left: 0;
-	  width: 100%;
+		// 为商品导航组件添加固定定位
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
 	}
 </style>

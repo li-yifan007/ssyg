@@ -93,9 +93,7 @@
 			async getGoodsDetail(goods_id) {
 				const {
 					data: res
-				} = await uni.$http.get('/api/public/v1/goods/detail', {
-					goods_id
-				})
+				} = await uni.$http.get('/api/public/v1/goods/detail', {goods_id})
 				if (res.meta.status !== 200) return uni.$showMsg()
 				res.message.goods_introduce = res.message.goods_introduce.replace(/<img /g,
 					'<img style="display:block;" ').replace(/webp/g, 'jpg')

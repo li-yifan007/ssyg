@@ -9,7 +9,8 @@
 				<navigator class="swiper-item" :url="'/subpkg/goods_detail/goods_detail?goods_id=' + item.goods_id">
 					<image :src="item.image_src"></image>
 				</navigator>
-			</swiper-item>
+			</swiper-item>+
+			
 		</swiper>
 
 		<!-- 分类导航 -->
@@ -39,7 +40,6 @@
 				</view>
 			</view>
 		</view>
-
 
 
 	</view>

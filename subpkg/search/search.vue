@@ -123,11 +123,8 @@
 			justify-content: space-between;
 
 			.goods-name {
-				// 文字不允许换行（单行文本）
 				white-space: nowrap;
-				// 溢出部分隐藏
 				overflow: hidden;
-				// 文本溢出后，使用 ... 代替
 				text-overflow: ellipsis;
 				margin-right: 3px;
 			}
@@ -149,13 +146,12 @@
 
 		.history-list {
 			display: flex;
+			height: 200rpx;
 			flex-wrap: wrap;
-			margin-bottom: 20rpx;
 
 			.uni-tag {
-				margin-top: 5px;
-				margin-right: 5px;
-				padding: 3px 16px;
+				padding: 5px 16px;
+				background-color: #9a9a9a;
 			}
 		}
 	}
